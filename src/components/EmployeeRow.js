@@ -1,8 +1,21 @@
 import React from 'react';
 
+const rowStyleEven = {
+    fontSize: "1.5rem",
+    marginTop: "10px",
+    marginBottom: "10px",
+    backgroundColor: "#F8F8F8"
+}
+
+const rowStyleOdd = {
+    fontSize: "1.5rem",
+    marginTop: "10px",
+    marginBottom: "10px"
+}
+
 function EmployeeRow(props){
     return(
-        <div className="row" id="employeeRowDiv">
+        <div className="row text-center" style={props.index % 2 === 0 ? rowStyleEven : rowStyleOdd} id="employeeRowDiv">
             <div className="col-2" id="imageDiv">
                <img alt="" src={props.img}></img>
             </div>

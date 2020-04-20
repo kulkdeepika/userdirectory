@@ -5,6 +5,7 @@ import SearchBar from './components/SearchBar';
 import EmployeeRow from './components/EmployeeRow';
 import TableHeadings from './components/TableHeadings';
 import API from './utils/API';
+import moment from 'moment';
 
 class App extends Component {
   
@@ -81,12 +82,12 @@ class App extends Component {
 
         {
           this.state.search === "" ?
-            this.state.results.map(emp => (
-                <EmployeeRow img={emp.picture.thumbnail} name={`${emp.name.first} ${emp.name.last}`} phone={emp.phone} email={emp.email} dob={emp.dob.date} key= {emp.login.uuid} />
+            this.state.results.map((emp,i) => (
+                <EmployeeRow img={emp.picture.thumbnail} name={`${emp.name.first} ${emp.name.last}`} phone={emp.phone} email={emp.email} dob={moment(emp.dob.date, moment.ISO_8601).format("MM-DD-YYYY")} key= {emp.login.uuid} index={i}/>
             )) : 
 
             this.state.filteredResults.map(emp => (
-              <EmployeeRow img={emp.picture.thumbnail} name={`${emp.name.first} ${emp.name.last}`} phone={emp.phone} email={emp.email} dob={emp.dob.date} key= {emp.login.uuid} />
+              <EmployeeRow img={emp.picture.thumbnail} name={`${emp.name.first} ${emp.name.last}`} phone={emp.phone} email={emp.email} dob={moment(emp.dob.date, moment.ISO_8601).format("MM-DD-YYYY")} key= {emp.login.uuid} />
           ))
           
         }

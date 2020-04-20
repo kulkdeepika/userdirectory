@@ -7,9 +7,9 @@ function SearchBar(props){
             <div className="col-4">
                 <div className="input-group input-group-lg">
                     <input 
-                        type="text" className="form-control align-middle border border-info"
+                        type="text" className="form-control align-middle"
                         placeholder="Search" 
-                        style={{marginTop: "13px"}}
+                        style={{marginTop: "13px", borderStyle: "solid", borderColor: "#111754"}}
                         value={props.value}
                         onChange={props.findEmployee}
                         name="search"

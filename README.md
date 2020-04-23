@@ -1,7 +1,7 @@
 # User-Directory
 Get quick access to non-sensitive information of other employees.
 
-## Table of Contents
+# Table of Contents
 
 - Aim
 - Usage and Instructions

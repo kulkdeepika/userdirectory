@@ -1,0 +1,18 @@
+
+.rowStyleEven {
+  font-Size: 1.2rem;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  /* background-color: "#F8F8F8"; */
+  height: 60px;
+}
+
+@media screen and (max-width: 768px){
+  .rowStyleEven{
+    height: 80px;
+    font-size: .6rem;
+  }
+}
+
+
+

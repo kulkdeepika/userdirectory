@@ -12,9 +12,9 @@ function Header(){
     return(
         <>
         <nav className="navbar navbar-light d-flex justify-content-center flex-column" style={headerStyle}>
-        <span className="navbar-brand h1" style={{fontSize: "2.5rem", color: "white"}}>Employee Directory</span>
+        <span className="navbar-brand h1" style={{fontSize: "2rem", color: "white"}}>Employee Directory  <i class="far fa-address-book"></i></span>
         <p className="nav-item">
-                <p className="nav-link text-white" style={{fontSize: "1.2rem"}}>Click 'Name' column to sort by first name; click back to restore</p>
+                <p className="nav-link text-white" style={{fontSize: "1rem", fontFamily: "Arial, Helvetica, sans-serif"}}>Click 'Name' column to sort by name (click back to restore), OR, use the search box to narrow your results.</p>
         </p>
         </nav>
         </>

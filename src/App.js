@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 import Header from './components/Header';
 import SearchBar from './components/SearchBar';
 import EmployeeRow from './components/EmployeeRow';
@@ -9,7 +8,6 @@ import moment from 'moment';
 
 class App extends Component {
   
-
   state = {
     search : "",
     results: [],
@@ -32,42 +30,36 @@ class App extends Component {
   findEmployee = event => {
     console.log("fired");
 
-    // this.setState({
-    //   filteredResults : []
-    // })
-
     const value = event.target.value;
     const name = event.target.name;
     console.log(value);
 
     this.setState({
       [name] : value
+    }, () => {
+      this.setState({
+        filteredResults: this.state.results.filter(emp => emp.name.first.toLowerCase().includes(this.state.search.toLowerCase()) || emp.name.last.toLowerCase().includes(this.state.search.toLowerCase()))
+      })
+  
     })
-
-    this.setState({
-      filteredResults: this.state.results.filter(emp => emp.name.first.toLowerCase().includes(this.state.search.toLowerCase()))
-    })   
-
   }
 
   sortByName = (event) => {
-    console.log(event.target);
     this.setState({
       sort: !this.state.sort
+    }, () => {
+
+      if(this.state.sort){
+        this.setState({
+          results: this.state.results.slice().sort((a,b)=> (a.name.first > b.name.first ? 1 : -1))
+        })
+      }
+      else{
+        this.setState({
+          results: this.originalResults
+        })
+      }
     })
-
-    console.log(this.state.sort);
-
-    if(this.state.sort){
-      this.setState({
-        results: this.state.results.slice().sort((a,b)=> (a.name.first > b.name.first ? 1 : -1))
-      })
-    }
-    else{
-      this.setState({
-        results: this.originalResults
-      })
-    }
 }
   
   render(){
@@ -78,22 +70,18 @@ class App extends Component {
         <div className="container-fluid" style={{margin: "10px"}}>
           <TableHeadings sortByName={this.sortByName} sort={this.state.sort}/>
 
-
-
         {
           this.state.search === "" ?
             this.state.results.map((emp,i) => (
                 <EmployeeRow img={emp.picture.thumbnail} name={`${emp.name.first} ${emp.name.last}`} phone={emp.phone} email={emp.email} dob={moment(emp.dob.date, moment.ISO_8601).format("MM-DD-YYYY")} key= {emp.login.uuid} index={i}/>
             )) : 
 
-            this.state.filteredResults.map(emp => (
-              <EmployeeRow img={emp.picture.thumbnail} name={`${emp.name.first} ${emp.name.last}`} phone={emp.phone} email={emp.email} dob={moment(emp.dob.date, moment.ISO_8601).format("MM-DD-YYYY")} key= {emp.login.uuid} />
+            this.state.filteredResults.map((emp,i) => (
+              <EmployeeRow img={emp.picture.thumbnail} name={`${emp.name.first} ${emp.name.last}`} phone={emp.phone} email={emp.email} dob={moment(emp.dob.date, moment.ISO_8601).format("MM-DD-YYYY")} key= {emp.login.uuid} index={i}/>
           ))
           
         }
           
-
-
         </div>
       </div>
     )

@@ -24,3 +24,5 @@ This is built using Class components to manage state.
 #### Deployed Link:
 
 [User Directory](https://kulkdeepika.github.io/userdirectory/)
+
+![App ScreenShot](./ScreenShot.png)
